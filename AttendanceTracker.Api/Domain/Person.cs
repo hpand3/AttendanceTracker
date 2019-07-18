@@ -11,14 +11,14 @@ namespace AttendanceTracker.Domain
         public string LastName { get; }
         public LocalDate DateOfBirth { get; }
         public List<ClassRegisterEntry> ClassRegisterEntries { get; }
-        
-        public Person(Guid id, string firstName, string lastName, LocalDate dateOfBirth, List<ClassRegisterEntry> classRegisterEntries)
+
+        public Person(Guid id, string firstName, string lastName, LocalDate dateOfBirth)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             DateOfBirth = dateOfBirth;
-            ClassRegisterEntries = classRegisterEntries;
+            ClassRegisterEntries = new List<ClassRegisterEntry>();
         }
 
         public void Attend(Class @class, LocalDateTime now)
