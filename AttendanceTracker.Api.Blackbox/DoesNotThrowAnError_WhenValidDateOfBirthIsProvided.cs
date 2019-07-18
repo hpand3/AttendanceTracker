@@ -2,7 +2,10 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using AttendanceTracker.Api.Blackbox.Fixture;
+using AttendanceTracker.Api.Contract.Person.Register;
+using AttendanceTracker.Common.Json;
 using Newtonsoft.Json;
+using NodaTime;
 using NUnit.Framework;
 using Shouldly;
 
@@ -20,12 +23,15 @@ namespace AttendanceTracker.Api.Blackbox
         [Test]
         public async Task Execute()
         {
-            var personDetails = JsonConvert.SerializeObject(new
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.AddCustomSerialisationSettings();
+
+            var personDetails = JsonConvert.SerializeObject(new RegisterPersonCommand
             {
                 FirstName = "Rick",
                 LastName = "Sanchez",
-                DateOfBirth = "01-01-1949"
-            });
+                DateOfBirth = new LocalDate(1949, 1, 1)
+            }, jsonSerializerSettings);
 
             var content = new StringContent(personDetails, Encoding.UTF8, "application/json");
 
@@ -33,7 +39,7 @@ namespace AttendanceTracker.Api.Blackbox
             httpResponse.EnsureSuccessStatusCode();
 
             var responseJson = await httpResponse.Content.ReadAsStringAsync();
-            var response = JsonConvert.DeserializeObject(responseJson);
+            var response = JsonConvert.DeserializeObject(responseJson, jsonSerializerSettings);
 
             response.ShouldNotBeNull();
         }

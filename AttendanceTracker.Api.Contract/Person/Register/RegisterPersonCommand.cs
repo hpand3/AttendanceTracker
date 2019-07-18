@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using NodaTime;
 
-namespace AttendanceTracker.Contract
+namespace AttendanceTracker.Api.Contract.Person.Register
 {
     public class RegisterPersonCommand
     {

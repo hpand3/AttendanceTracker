@@ -1,5 +1,5 @@
 using System;
-using AttendanceTracker.Contract;
+using AttendanceTracker.Api.Contract.Person.Register;
 using AttendanceTracker.Domain;
 using Microsoft.AspNetCore.Mvc;
 

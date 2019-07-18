@@ -13,4 +13,9 @@
         <PackageReference Include="Shouldly" Version="3.0.2"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\AttendanceTracker.Api.Contract\AttendanceTracker.Api.Contract.csproj"/>
+        <ProjectReference Include="..\AttendanceTracker.Common.Json\AttendanceTracker.Common.Json.csproj"/>
+    </ItemGroup>
+
 </Project>

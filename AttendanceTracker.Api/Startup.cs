@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AttendanceTracker.Common.Json;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using NodaTime;
-using NodaTime.Serialization.JsonNet;
-using NodaTime.Text;
 
 namespace AttendanceTracker
 {
@@ -23,12 +20,7 @@ namespace AttendanceTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options =>
-                {
-                    var nodaTimeLocalDatePatternConverter = LocalDatePattern.CreateWithInvariantCulture("dd-MM-yyyy");
-                    options.SerializerSettings.Converters.Add(new NodaPatternConverter<LocalDate>(nodaTimeLocalDatePatternConverter));
-                    options.SerializerSettings.DateParseHandling = DateParseHandling.None;
-                });
+                .AddJsonOptions(options => { options.SerializerSettings.AddCustomSerialisationSettings(); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
