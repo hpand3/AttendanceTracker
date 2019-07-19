@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Contract"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\AttendanceTracker.Api.Contract\AttendanceTracker.Api.Contract.csproj"/>
         <ProjectReference Include="..\AttendanceTracker.Common.Json\AttendanceTracker.Common.Json.csproj"/>
     </ItemGroup>
